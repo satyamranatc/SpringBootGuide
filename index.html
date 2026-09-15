@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpringGuide | Master Spring Boot & Backend Engineering</title>
+    <meta name="description" content="Go beyond CRUD. Master Spring Boot internals, JPA optimization, N+1 fixes, transactions, security architecture, system design, and 60+ real senior interview questions.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="scroll-progress-bar" id="scroll-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <div class="brand-icon">S</div>
+                <div class="brand-name">SPRING<span>GUIDE</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="#audit" class="nav-link">Skill Audit</a>
+                <a href="#curriculum" class="nav-link">Curriculum</a>
+                <a href="#lab" class="nav-link">Optimization Lab</a>
+                <a href="#capstone" class="nav-link">Job Platform 100k</a>
+                <a href="#vault" class="nav-link">Interview Vault</a>
+                <a href="#discipline" class="nav-link">Discipline</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#vault" class="btn-nav-search">
+                    <span>🔍</span> <span class="mono">Search Q&A</span>
+                </a>
+                <a href="#curriculum" class="btn-nav-cta">Start Roadmap</a>
+                <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- =================================================================
+             HERO SECTION
+             ================================================================= -->
+        <section class="hero" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge-strip">
+                        <span class="pulse-dot"></span>
+                        <span>BEYOND THE @RESTCONTROLLER</span>
+                    </div>
+
+                    <h1 class="hero-headline">
+                        Stop learning <span class="text-dimmed">isolated topics.</span>
+                        <span class="text-gradient">Become an Engineer.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Transition from a "Spring Boot learner" to a Backend Engineer who can design, build, debug, optimize, secure, test, and defend production systems in technical interviews.
+                    </p>
+
+                    <div class="hero-mantra">
+                        <span class="mantra-step">LEARN</span>
+                        <span class="mantra-arrow">→</span>
+                        <span class="mantra-step">BUILD</span>
+                        <span class="mantra-arrow">→</span>
+                        <span class="mantra-step highlight">BREAK</span>
+                        <span class="mantra-arrow">→</span>
+                        <span class="mantra-step highlight">OPTIMIZE</span>
+                        <span class="mantra-arrow">→</span>
+                        <span class="mantra-step">DEFEND</span>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#curriculum" class="btn btn-primary">Start Mastery Roadmap</a>
+                        <a href="#lab" class="btn btn-secondary">Explore 6 Optimization Labs</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-num">30</div>
+                            <div class="stat-label">In-Depth Modules</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">6</div>
+                            <div class="stat-label">Break & Fix Labs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">60+</div>
+                            <div class="stat-label">Senior Interview Q&As</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual: Developer Loop Simulator -->
+                <div class="hero-visual">
+                    <div class="dev-loop-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-traffic">
+                                <span class="close"></span>
+                                <span class="minimize"></span>
+                                <span class="maximize"></span>
+                            </div>
+                            <div class="terminal-title">
+                                <span>developer-loop.sh</span>
+                                <span class="terminal-badge">LIVE SIMULATOR</span>
+                            </div>
+                            <div class="mono" style="font-size: 0.7rem; color: var(--text-muted);">v1.0.4</div>
+                        </div>
+
+                        <div class="terminal-body">
+                            <div class="loop-steps-grid">
+                                <div class="loop-step-row active" data-step="0">
+                                    <span class="step-idx">01</span>
+                                    <span class="step-label">BUILD</span>
+                                    <span class="step-desc">Implement Feature</span>
+                                    <span class="step-status"></span>
+                                </div>
+                                <div class="loop-step-row" data-step="1">
+                                    <span class="step-idx">02</span>
+                                    <span class="step-label">TEST</span>
+                                    <span class="step-desc">Verify Logic</span>
+                                    <span class="step-status"></span>
+                                </div>
+                                <div class="loop-step-row" data-step="2">
+                                    <span class="step-idx">03</span>
+                                    <span class="step-label">BREAK</span>
+                                    <span class="step-desc">Stress & Edge Cases</span>
+                                    <span class="step-status"></span>
+                                </div>
+                                <div class="loop-step-row" data-step="3">
+                                    <span class="step-idx">04</span>
+                                    <span class="step-label">DEBUG</span>
+                                    <span class="step-desc">Find Bottlenecks</span>
+                                    <span class="step-status"></span>
+                                </div>
+                                <div class="loop-step-row" data-step="4">
+                                    <span class="step-idx">05</span>
+                                    <span class="step-label">MEASURE</span>
+                                    <span class="step-desc">Analyze Latency/CPU</span>
+                                    <span class="step-status"></span>
+                                </div>
+                                <div class="loop-step-row" data-step="5">
+                                    <span class="step-idx">06</span>
+                                    <span class="step-label">OPTIMIZE</span>
+                                    <span class="step-desc">Refine & Scale</span>
+                                    <span class="step-status"></span>
+                                </div>
+                                <div class="loop-step-row" data-step="6">
+                                    <span class="step-idx">07</span>
+                                    <span class="step-label">DOCUMENT</span>
+                                    <span class="step-desc">Lock Architecture</span>
+                                    <span class="step-status"></span>
+                                </div>
+                            </div>
+
+                            <div class="terminal-command-pane">
+                                <div class="terminal-cmd-line">
+                                    <span class="prompt">$</span>
+                                    <span class="cmd-text">mvn compile -Dfeature=job-application-api</span>
+                                </div>
+                                <div class="terminal-log-output">[INFO] Building JobApplicationController & Service layer...
+[INFO] Compiling 14 source files to target/classes
+[SUCCESS] Feature build complete (0.84s)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION: AUDIT & GAP MATRIX (DATA.MD SEC 1)
+             ================================================================= -->
+        <section class="section" id="audit">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span>●</span> SECTION 01: REALITY CHECK
+                    </div>
+                    <h2 class="section-title">Where Most Learners Get Stuck</h2>
+                    <p class="section-subtitle">
+                        If you already know basic CRUD, folder structure, MySQL, and basic JWT, you have reached the <strong>Junior+ threshold</strong>. Repeating tutorial CRUD apps will not get you hired as a Backend Engineer.
+                    </p>
+                </div>
+
+                <div class="audit-card">
+                    <div class="audit-header-banner">
+                        <div class="audit-status-badge">
+                            <span>CURRENT PROFILE:</span>
+                            <strong>Junior → Junior+ Spring Boot Developer</strong>
+                        </div>
+                        <div class="audit-legend">
+                            <span class="legend-item"><span class="badge-status badge-good">✅ Good</span> Solid grasp</span>
+                            <span class="legend-item"><span class="badge-status badge-medium">🟡 Basic</span> Partial depth</span>
+                            <span class="legend-item"><span class="badge-status badge-focus">❌ Need Focus</span> Interview blocker</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-grid">
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Spring Boot Basics</span>
+                            <span class="badge-status badge-good">✅ Good</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">REST CRUD Operations</span>
+                            <span class="badge-status badge-good">✅ Good</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">MySQL Fundamentals</span>
+                            <span class="badge-status badge-good">✅ Good Foundation</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Hibernate / JPA Internals</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Entity Relationships</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">JWT Authentication</span>
+                            <span class="badge-status badge-medium">🟡 Intermediate</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Production File Upload</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Spring AI Integration</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Security Filter Chain</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Global Exception Handling</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Transactions & ACID</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Docker & Deployment</span>
+                            <span class="badge-status badge-medium">🟡 Basic</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Automated Testing & Slices</span>
+                            <span class="badge-status badge-focus">❌ Critical Focus</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Performance & Query Tuning</span>
+                            <span class="badge-status badge-focus">❌ Critical Focus</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Production Architecture</span>
+                            <span class="badge-status badge-focus">❌ Critical Focus</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Observability & Actuator</span>
+                            <span class="badge-status badge-focus">❌ Critical Focus</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Advanced JPA & N+1 Fixes</span>
+                            <span class="badge-status badge-focus">❌ Critical Focus</span>
+                        </div>
+                        <div class="matrix-item">
+                            <span class="matrix-topic">Caching (Redis) & Async</span>
+                            <span class="badge-status badge-focus">❌ Critical Focus</span>
+                        </div>
+                    </div>
+
+                    <div class="audit-callout">
+                        <strong>The Strategic Pivot:</strong> Don't spend another month memorizing <code class="mono">@RestController</code> annotations. Your next phase is <strong>Advanced Spring Boot + Backend Engineering + Interview Preparation</strong>, validated through deliberate breaking, measuring, and optimizing.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION: CURRICULUM TRACKS (DATA.MD SEC 2 - 22)
+             ================================================================= -->
+        <section class="section" id="curriculum">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span>●</span> COMPREHENSIVE CURRICULUM
+                    </div>
+                    <h2 class="section-title">The Master Curriculum Tracks</h2>
+                    <p class="section-subtitle">
+                        Deep engineering concepts structured by impact. Move through each track to acquire the technical depth senior interviewers test.
+                    </p>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="curriculum-tabs">
+                    <button class="tab-btn active" data-track="track-core">01 Core & Internals</button>
+                    <button class="tab-btn" data-track="track-rest">02 REST, DTOs & Validation</button>
+                    <button class="tab-btn" data-track="track-jpa">03 JPA, Hibernate & N+1</button>
+                    <button class="tab-btn" data-track="track-sec">04 Transactions, SQL & Security</button>
+                    <button class="tab-btn" data-track="track-dist">05 Testing, Observability & Scale</button>
+                </div>
+
+                <!-- TRACK 1: CORE & INTERNALS -->
+                <div class="track-container active" id="track-core">
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Level 1 • Core</span>
+                                <span class="module-level">Fundamental</span>
+                            </div>
+                            <h3 class="module-title">Dependency Injection & IoC</h3>
+                            <p class="module-desc">Understand why constructor injection is preferred over field injection, how the IoC container manages objects, and what happens inside <code class="mono">ApplicationContext</code>.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Explicit dependencies:</strong> Prevents partially initialized objects and supports class immutability</li>
+                                <li><strong>Unit testing ergonomics:</strong> Easily instantiate services in tests without Spring test runners</li>
+                                <li><strong>Bean lifecycle:</strong> Instantiation → Populate properties → BeanNameAware → PostConstruct → Ready</li>
+                            </ul>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Java</span>
+                                    <button class="copy-btn"><span>📋</span> Copy</button>
+                                </div>
+                                <pre class="code-content"><code><span class="ann">@Service</span>
+<span class="kw">public class</span> <span class="cls">UserService</span> {
+    <span class="kw">private final</span> <span class="cls">UserRepository</span> repository;
+
+    <span class="cm">// Constructor injection: explicit, immutable & easily mockable</span>
+    <span class="kw">public</span> <span class="fn">UserService</span>(<span class="cls">UserRepository</span> repository) {
+        <span class="kw">this</span>.repository = repository;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Internals</span>
+                                <span class="module-level">Deep Dive</span>
+                            </div>
+                            <h3 class="module-title">Spring Boot Internals & Startup</h3>
+                            <p class="module-desc">How does Spring Boot know which configuration to apply? Deconstruct auto-configuration, component scanning, condition evaluators, and bean scopes.</p>
+                            <ul class="module-checklist">
+                                <li><code class="mono">@SpringBootApplication</code>: Combines <code class="mono">@Configuration</code>, <code class="mono">@EnableAutoConfiguration</code>, and <code class="mono">@ComponentScan</code></li>
+                                <li><strong>Condition evaluation:</strong> <code class="mono">@ConditionalOnClass</code>, <code class="mono">@ConditionalOnMissingBean</code></li>
+                                <li><strong>Scopes:</strong> Singleton (one per container) vs Prototype (new instance on every injection)</li>
+                            </ul>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Startup Sequence</span>
+                                    <button class="copy-btn"><span>📋</span> Copy</button>
+                                </div>
+                                <pre class="code-content"><code>@SpringBootApplication
+        ↓
+@ComponentScan (Finds @Component, @Service, etc.)
+        ↓
+@EnableAutoConfiguration (Reads META-INF/spring/...)
+        ↓
+Evaluation of Conditionals (@ConditionalOnClass)
+        ↓
+ApplicationContext Initialized & Beans Wired</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRACK 2: REST, DTOS & VALIDATION -->
+                <div class="track-container" id="track-rest">
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">API Design</span>
+                                <span class="module-level">Beyond CRUD</span>
+                            </div>
+                            <h3 class="module-title">REST Semantics & RFC 7807</h3>
+                            <p class="module-desc">Move beyond generic GET/POST. Learn status code precision, HTTP idempotency, pagination strategies, and industry standard error formatting.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Status Codes:</strong> 200 (OK) vs 201 (Created) vs 204 (No Content)</li>
+                                <li><strong>Security Semantics:</strong> 401 (Unauthenticated) vs 403 (Forbidden / Insufficient Roles)</li>
+                                <li><strong>Idempotency:</strong> PUT replaces entire resource; PATCH updates partial fields</li>
+                                <li><strong>Pagination:</strong> Offset/Limit vs Keyset/Cursor for high volume datasets</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Architecture</span>
+                                <span class="module-level">Crucial</span>
+                            </div>
+                            <h3 class="module-title">DTO Isolation & Java Records</h3>
+                            <p class="module-desc">Never expose JPA entities directly to API consumers. Avoid accidental data leaks, circular serialization loops, and tight DB coupling.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Entity vs DTO:</strong> Separation of database storage concerns from API contracts</li>
+                                <li><strong>Java Records:</strong> Immutable, boilerplate-free data transfer carriers</li>
+                                <li><strong>Mapping:</strong> Clean transformation via MapStruct without manual setter noise</li>
+                            </ul>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Java 17+ Record</span>
+                                    <button class="copy-btn"><span>📋</span> Copy</button>
+                                </div>
+                                <pre class="code-content"><code><span class="cm">// Clean, immutable API response contract</span>
+<span class="kw">public record</span> <span class="cls">UserResponse</span>(
+    <span class="cls">Long</span> id,
+    <span class="cls">String</span> name,
+    <span class="cls">String</span> email
+) {}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Robustness</span>
+                                <span class="module-level">Production</span>
+                            </div>
+                            <h3 class="module-title">Validation & @RestControllerAdvice</h3>
+                            <p class="module-desc">Centralized error handling. Stop using scattered try-catch blocks in controllers. Handle Bean Validation failures cleanly.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Bean Validation:</strong> <code class="mono">@Valid</code>, <code class="mono">@NotBlank</code>, <code class="mono">@Size</code>, <code class="mono">@Email</code></li>
+                                <li><code class="mono">@RestControllerAdvice</code>: Intercepts all controller exceptions in a single place</li>
+                                <li>Unified JSON error payload with timestamp, HTTP status, and field errors</li>
+                            </ul>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Java</span>
+                                    <button class="copy-btn"><span>📋</span> Copy</button>
+                                </div>
+                                <pre class="code-content"><code><span class="ann">@RestControllerAdvice</span>
+<span class="kw">public class</span> <span class="cls">GlobalExceptionHandler</span> {
+    <span class="ann">@ExceptionHandler</span>(<span class="cls">ResourceNotFoundException</span>.<span class="kw">class</span>)
+    <span class="kw">public</span> <span class="cls">ResponseEntity</span>&lt;<span class="cls">ErrorResponse</span>&gt; <span class="fn">handleNotFound</span>(<span class="cls">ResourceNotFoundException</span> ex) {
+        <span class="kw">return</span> <span class="cls">ResponseEntity</span>.status(404).body(<span class="kw">new</span> <span class="cls">ErrorResponse</span>(404, ex.getMessage()));
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRACK 3: JPA, HIBERNATE & N+1 -->
+                <div class="track-container" id="track-jpa">
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">JPA Internals</span>
+                                <span class="module-level">Critical</span>
+                            </div>
+                            <h3 class="module-title">Entity Lifecycle & Dirty Checking</h3>
+                            <p class="module-desc">Understand the 4 states of an entity: Transient, Persistent, Detached, and Removed. Learn how Hibernate detects mutations automatically.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Persistence Context:</strong> 1st-level cache scoped to the current EntityManager session</li>
+                                <li><strong>Dirty Checking:</strong> Hibernate compares snapshot copies at flush time and issues UPDATEs</li>
+                                <li><code class="mono">save()</code> vs <code class="mono">saveAndFlush()</code>: In-memory queuing vs immediate SQL push</li>
+                            </ul>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Entity States</span>
+                                    <button class="copy-btn"><span>📋</span> Copy</button>
+                                </div>
+                                <pre class="code-content"><code>Transient (new User())
+    ↓ entityManager.persist()
+Persistent (Managed in 1st-level cache)
+    ↓ entityManager.detach() / transaction commit
+Detached (No longer monitored)
+    ↓ entityManager.remove()
+Removed (Scheduled for SQL DELETE)</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Performance Killer</span>
+                                <span class="module-level">Interview Must-Know</span>
+                            </div>
+                            <h3 class="module-title">The Infamous N+1 Problem</h3>
+                            <p class="module-desc">Fetching 100 users generates 1 query for users and 100 queries for their orders (101 roundtrips). Learn the 4 concrete ways to eliminate it.</p>
+                            <ul class="module-checklist">
+                                <li><code class="mono">JOIN FETCH</code>: Eagerly fetch associations in a single SQL inner/left join</li>
+                                <li><code class="mono">@EntityGraph</code>: Declaratively specify fetch plans per repository method</li>
+                                <li><code class="mono">default_batch_fetch_size</code>: Group lazy queries using SQL <code class="mono">WHERE IN (...)</code></li>
+                                <li><strong>DTO Projections:</strong> Select only required fields directly from DB</li>
+                            </ul>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Java Repository</span>
+                                    <button class="copy-btn"><span>📋</span> Copy</button>
+                                </div>
+                                <pre class="code-content"><code><span class="cm">// Fixes N+1: Executes a single SQL query with JOIN</span>
+<span class="ann">@Query</span>(<span class="str">"SELECT u FROM User u JOIN FETCH u.orders WHERE u.active = true"</span>)
+<span class="cls">List</span>&lt;<span class="cls">User</span>&gt; <span class="fn">findAllWithOrders</span>();</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRACK 4: TRANSACTIONS, SQL & SECURITY -->
+                <div class="track-container" id="track-sec">
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Database</span>
+                                <span class="module-level">Core Engineering</span>
+                            </div>
+                            <h3 class="module-title">Transactions & ACID Boundaries</h3>
+                            <p class="module-desc">Deep dive into Spring's <code class="mono">@Transactional</code>, isolation levels, propagation semantics, and the dreaded self-invocation proxy bypass.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Rollback rules:</strong> By default, rolls back on unchecked (<code class="mono">RuntimeException</code>), NOT checked exceptions</li>
+                                <li><strong>Propagation:</strong> <code class="mono">REQUIRED</code> (join or start) vs <code class="mono">REQUIRES_NEW</code> (suspend & spawn)</li>
+                                <li><strong>Self-invocation trap:</strong> Calling a transactional method from within the same class bypasses the proxy!</li>
+                                <li><code class="mono">readOnly = true</code>: Optimization hint that disables Hibernate dirty checking snapshots</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">SQL Tuning</span>
+                                <span class="module-level">Mastery</span>
+                            </div>
+                            <h3 class="module-title">SQL Optimization & EXPLAIN Plans</h3>
+                            <p class="module-desc">Stop guessing why a query is slow. Inspect database query execution plans, design composite indexes, and detect deadlocks.</p>
+                            <ul class="module-checklist">
+                                <li><code class="mono">EXPLAIN</code>: Inspect <code class="mono">type</code> (ALL vs ref vs const) and rows scanned</li>
+                                <li><strong>Composite Indexes:</strong> Order matters! Leading columns must match WHERE clauses</li>
+                                <li><strong>Covering Index:</strong> All required columns reside in the B-Tree index, avoiding table lookups</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Security</span>
+                                <span class="module-level">Architecture</span>
+                            </div>
+                            <h3 class="module-title">Spring Security Beyond JWT</h3>
+                            <p class="module-desc">Deconstruct the SecurityFilterChain, authentication vs authorization, SecurityContextHolder, password hashing, and token rotation.</p>
+                            <ul class="module-checklist">
+                                <li><strong>SecurityFilterChain:</strong> Ordered chain of servlet filters intercepting every HTTP request</li>
+                                <li><strong>BCrypt:</strong> Adaptive slow hashing with salt to prevent rainbow table attacks</li>
+                                <li><strong>Token Rotation:</strong> Short-lived Access Token (15m) + secure Refresh Token in HTTP-only cookie</li>
+                                <li>Method security with <code class="mono">@PreAuthorize("hasRole('ADMIN')")</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRACK 5: TESTING, OBSERVABILITY & SCALE -->
+                <div class="track-container" id="track-dist">
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Testing</span>
+                                <span class="module-level">Essential</span>
+                            </div>
+                            <h3 class="module-title">Testing Pyramid & Slices</h3>
+                            <p class="module-desc">Stop manually testing endpoints with Postman. Build automated test suites with Mockito, MockMvc, and Testcontainers.</p>
+                            <ul class="module-checklist">
+                                <li><strong>Unit Tests:</strong> Fast JUnit 5 + Mockito (<code class="mono">@Mock</code>, <code class="mono">@InjectMocks</code>)</li>
+                                <li><strong>Web Slice:</strong> <code class="mono">@WebMvcTest</code> tests controllers without loading full context</li>
+                                <li><strong>Integration:</strong> Testcontainers spins real MySQL & Redis in Docker for real test fidelity</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Observability</span>
+                                <span class="module-level">Production</span>
+                            </div>
+                            <h3 class="module-title">Logging, MDC & Actuator</h3>
+                            <p class="module-desc">Replace <code class="mono">System.out.println()</code> with structured logging, MDC request tracing across microservices, and Prometheus metrics.</p>
+                            <ul class="module-checklist">
+                                <li><strong>MDC Correlation IDs:</strong> Inject unique request ID to trace a call from Controller → Service → DB</li>
+                                <li><code class="mono">/actuator/health</code> & <code class="mono">/actuator/metrics</code> for Kubernetes readiness/liveness</li>
+                                <li>Micrometer integration pushing latency histograms directly to Prometheus & Grafana</li>
+                            </ul>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-meta">
+                                <span class="module-tag">Distributed</span>
+                                <span class="module-level">Senior Tier</span>
+                            </div>
+                            <h3 class="module-title">Caching, Async & Architecture</h3>
+                            <p class="module-desc">Master Redis Cache-Aside, <code class="mono">@Async</code> worker thread pools, direct S3 pre-signed uploads, and Hexagonal / Clean architecture.</p>
+                            <ul class="module-checklist">
+                                <li><code class="mono">@Cacheable</code> & Redis: Cache-aside pattern with TTL to prevent cache stampedes</li>
+                                <li><code class="mono">@Async</code>: Decouple heavy operations using custom <code class="mono">ThreadPoolTaskExecutor</code></li>
+                                <li><strong>Direct S3 Uploads:</strong> Generate pre-signed PUT URLs so clients upload directly to S3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION: "BREAK & OPTIMIZE" LAB (DATA.MD SEC 25)
+             ================================================================= -->
+        <section class="section" id="lab">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span>●</span> SECTION 25: BREAK → MEASURE → OPTIMIZE
+                    </div>
+                    <h2 class="section-title">The 6 Optimization Challenges</h2>
+                    <p class="section-subtitle">
+                        For every feature you build, deliberately engineer a flawed implementation first. Measure the performance penalty, find the bottleneck, and optimize it.
+                    </p>
+                </div>
+
+                <div class="lab-card">
+                    <!-- Nav Tabs -->
+                    <div class="lab-nav">
+                        <div class="lab-nav-item active" data-challenge="c1">
+                            <div class="lab-nav-num">CHALLENGE 01</div>
+                            <div class="lab-nav-title">100k Records Fetch</div>
+                        </div>
+                        <div class="lab-nav-item" data-challenge="c2">
+                            <div class="lab-nav-num">CHALLENGE 02</div>
+                            <div class="lab-nav-title">N+1 Query Explosion</div>
+                        </div>
+                        <div class="lab-nav-item" data-challenge="c3">
+                            <div class="lab-nav-num">CHALLENGE 03</div>
+                            <div class="lab-nav-title">Slow SQL & EXPLAIN</div>
+                        </div>
+                        <div class="lab-nav-item" data-challenge="c4">
+                            <div class="lab-nav-num">CHALLENGE 04</div>
+                            <div class="lab-nav-title">Redis Cache-Aside</div>
+                        </div>
+                        <div class="lab-nav-item" data-challenge="c5">
+                            <div class="lab-nav-num">CHALLENGE 05</div>
+                            <div class="lab-nav-title">5GB S3 Direct Upload</div>
+                        </div>
+                        <div class="lab-nav-item" data-challenge="c6">
+                            <div class="lab-nav-num">CHALLENGE 06</div>
+                            <div class="lab-nav-title">10s Async Worker</div>
+                        </div>
+                    </div>
+
+                    <div class="lab-body">
+                        <!-- CHALLENGE 1 -->
+                        <div class="challenge-pane active" id="c1">
+                            <div class="challenge-intro">
+                                <div class="challenge-title-group">
+                                    <h3>Challenge 1: Fetching 100,000 Records</h3>
+                                    <p>Calling <code class="mono">GET /jobs</code> loads 100k database entities directly into JVM heap, triggering high GC pauses, massive memory consumption, and API timeouts.</p>
+                                </div>
+                                <div class="benchmark-delta-pill">
+                                    <div class="metric-val">3,850ms → 14ms</div>
+                                    <div class="metric-label">p99 Latency (99.6% faster)</div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-split">
+                                <div class="diff-col bad">
+                                    <div class="diff-header">
+                                        <span class="col-title">✕ Bad: Full Heap Load</span>
+                                        <span class="diff-metric-tag">Memory: 480MB • Latency: 3.8s</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Catastrophic at scale: Pulls all 100k rows into RAM</span>
+<span class="ann">@GetMapping</span>(<span class="str">"/jobs"</span>)
+<span class="kw">public</span> <span class="cls">List</span>&lt;<span class="cls">Job</span>&gt; <span class="fn">getAllJobs</span>() {
+    <span class="kw">return</span> jobRepository.findAll();
+}</code></pre>
+                                </div>
+
+                                <div class="diff-col good">
+                                    <div class="diff-header">
+                                        <span class="col-title">✓ Optimized: Keyset / Pageable + DTO</span>
+                                        <span class="diff-metric-tag">Memory: 4MB • Latency: 14ms</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Production ready: Keyset pagination with DTO projection</span>
+<span class="ann">@GetMapping</span>(<span class="str">"/jobs"</span>)
+<span class="kw">public</span> <span class="cls">Page</span>&lt;<span class="cls">JobSummaryDTO</span>&gt; <span class="fn">getJobs</span>(
+    <span class="ann">@RequestParam</span>(defaultValue = <span class="str">"0"</span>) <span class="kw">int</span> page,
+    <span class="ann">@RequestParam</span>(defaultValue = <span class="str">"20"</span>) <span class="kw">int</span> size
+) {
+    <span class="kw">return</span> jobService.getJobsPaged(<span class="cls">PageRequest</span>.of(page, size, <span class="cls">Sort</span>.by(<span class="str">"createdAt"</span>).descending()));
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="diff-takeaway">
+                                <strong>Engineering Takeaway:</strong> Never expose unbounded collection endpoints. Always enforce pagination limits, apply covering indexes on sorting columns (<code class="mono">created_at</code>), and use light DTO projections instead of heavy entities.
+                            </div>
+                        </div>
+
+                        <!-- CHALLENGE 2 -->
+                        <div class="challenge-pane" id="c2">
+                            <div class="challenge-intro">
+                                <div class="challenge-title-group">
+                                    <h3>Challenge 2: The N+1 Query Multiplier</h3>
+                                    <p>Iterating through 100 applications to get the applicant's profile triggers 1 query for applications, plus 100 individual queries for users, destroying database throughput.</p>
+                                </div>
+                                <div class="benchmark-delta-pill">
+                                    <div class="metric-val">101 Queries → 1 Query</div>
+                                    <div class="metric-label">DB Roundtrips (99% saved)</div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-split">
+                                <div class="diff-col bad">
+                                    <div class="diff-header">
+                                        <span class="col-title">✕ Bad: Lazy Loading Loop</span>
+                                        <span class="diff-metric-tag">101 DB Queries • 2,400ms</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Fires 1 query for applications, then 100 queries for users!</span>
+<span class="cls">List</span>&lt;<span class="cls">Application</span>&gt; apps = appRepository.findAll();
+<span class="kw">for</span> (<span class="cls">Application</span> app : apps) {
+    <span class="cls">System</span>.out.println(app.getUser().getEmail());
+}</code></pre>
+                                </div>
+
+                                <div class="diff-col good">
+                                    <div class="diff-header">
+                                        <span class="col-title">✓ Optimized: JOIN FETCH / EntityGraph</span>
+                                        <span class="diff-metric-tag">1 Single Query • 18ms</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Executes 1 single SQL INNER JOIN in the database</span>
+<span class="ann">@Query</span>(<span class="str">"SELECT a FROM Application a JOIN FETCH a.user WHERE a.job.id = :jobId"</span>)
+<span class="cls">List</span>&lt;<span class="cls">Application</span>&gt; <span class="fn">findAllWithUserByJobId</span>(<span class="ann">@Param</span>(<span class="str">"jobId"</span>) <span class="cls">Long</span> jobId);</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="diff-takeaway">
+                                <strong>Engineering Takeaway:</strong> Log SQL statements in dev (<code class="mono">spring.jpa.show-sql=true</code>). Count the generated queries. Solve child entity loading with <code class="mono">JOIN FETCH</code> or configure <code class="mono">default_batch_fetch_size: 50</code>.
+                            </div>
+                        </div>
+
+                        <!-- CHALLENGE 3 -->
+                        <div class="challenge-pane" id="c3">
+                            <div class="challenge-intro">
+                                <div class="challenge-title-group">
+                                    <h3>Challenge 3: Slow SQL Query & EXPLAIN Plans</h3>
+                                    <p>Filtering 500k candidate applications by email and status does a full table scan without composite indexes, locking table rows and spiking CPU.</p>
+                                </div>
+                                <div class="benchmark-delta-pill">
+                                    <div class="metric-val">1,200ms → 2ms</div>
+                                    <div class="metric-label">Execution Time (600x faster)</div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-split">
+                                <div class="diff-col bad">
+                                    <div class="diff-header">
+                                        <span class="col-title">✕ Bad: Full Table Scan</span>
+                                        <span class="diff-metric-tag">type: ALL • rows: 500,000</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">-- No composite index: Database reads 500,000 disk pages</span>
+EXPLAIN SELECT * FROM applications 
+WHERE email = 'dev@spring.io' AND status = 'ACCEPTED';</code></pre>
+                                </div>
+
+                                <div class="diff-col good">
+                                    <div class="diff-header">
+                                        <span class="col-title">✓ Optimized: Composite B-Tree Index</span>
+                                        <span class="diff-metric-tag">type: ref • rows: 1</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">-- Create covering composite index on search predicate</span>
+CREATE INDEX idx_app_email_status ON applications(email, status);
+
+<span class="cm">-- Now uses index range scan: Zero table scan</span>
+EXPLAIN SELECT * FROM applications 
+WHERE email = 'dev@spring.io' AND status = 'ACCEPTED';</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="diff-takeaway">
+                                <strong>Engineering Takeaway:</strong> Run <code class="mono">EXPLAIN</code> before committing any new query. If <code class="mono">type</code> is <code class="mono">ALL</code> on a high-cardinality table, an index is missing. Put the most selective column first in composite indexes.
+                            </div>
+                        </div>
+
+                        <!-- CHALLENGE 4 -->
+                        <div class="challenge-pane" id="c4">
+                            <div class="challenge-intro">
+                                <div class="challenge-title-group">
+                                    <h3>Challenge 4: High-Traffic Endpoint & Redis Cache</h3>
+                                    <p>A trending company's public job listing is hit 1,000 times per second. Hitting MySQL for every request exhausts Hikari connection pools.</p>
+                                </div>
+                                <div class="benchmark-delta-pill">
+                                    <div class="metric-val">85ms → 1.2ms</div>
+                                    <div class="metric-label">Response Latency (70x faster)</div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-split">
+                                <div class="diff-col bad">
+                                    <div class="diff-header">
+                                        <span class="col-title">✕ Bad: Repeated DB Hits</span>
+                                        <span class="diff-metric-tag">1,000 req/s • DB CPU 98%</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Slams database with identical queries every millisecond</span>
+<span class="kw">public</span> <span class="cls">CompanyProfileDTO</span> <span class="fn">getCompany</span>(<span class="cls">Long</span> id) {
+    <span class="kw">return</span> companyRepository.findById(id)
+        .map(mapper::toDto)
+        .orElseThrow();
+}</code></pre>
+                                </div>
+
+                                <div class="diff-col good">
+                                    <div class="diff-header">
+                                        <span class="col-title">✓ Optimized: Redis Cache-Aside + TTL</span>
+                                        <span class="diff-metric-tag">Redis Memory • DB CPU 3%</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Cache-aside: hits Redis in RAM; falls back to DB only on miss</span>
+<span class="ann">@Cacheable</span>(value = <span class="str">"companies"</span>, key = <span class="str">"#id"</span>, unless = <span class="str">"#result == null"</span>)
+<span class="kw">public</span> <span class="cls">CompanyProfileDTO</span> <span class="fn">getCompany</span>(<span class="cls">Long</span> id) {
+    <span class="kw">return</span> companyRepository.findById(id)
+        .map(mapper::toDto)
+        .orElseThrow();
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="diff-takeaway">
+                                <strong>Engineering Takeaway:</strong> Always define an explicit TTL (Time-To-Live) on cache keys to prevent memory leaks and stale data. Pair with <code class="mono">@CacheEvict</code> when entities are updated.
+                            </div>
+                        </div>
+
+                        <!-- CHALLENGE 5 -->
+                        <div class="challenge-pane" id="c5">
+                            <div class="challenge-intro">
+                                <div class="challenge-title-group">
+                                    <h3>Challenge 5: Large File Upload (Direct S3 Pre-Signed)</h3>
+                                    <p>Streaming a 5GB video/resume file through Spring Boot exhausts worker threads, buffers files to app disk, and creates a severe denial-of-service vector.</p>
+                                </div>
+                                <div class="benchmark-delta-pill">
+                                    <div class="metric-val">Zero App IO & Memory</div>
+                                    <div class="metric-label">Serverless Direct Upload</div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-split">
+                                <div class="diff-col bad">
+                                    <div class="diff-header">
+                                        <span class="col-title">✕ Bad: Proxy Through App Server</span>
+                                        <span class="diff-metric-tag">Server RAM Spikes • Thread Blocked</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Holds Tomcat thread open for 4 minutes during upload</span>
+<span class="ann">@PostMapping</span>(<span class="str">"/upload"</span>)
+<span class="kw">public</span> <span class="cls">String</span> <span class="fn">upload</span>(<span class="ann">@RequestParam</span> <span class="cls">MultipartFile</span> file) {
+    s3Client.putObject(bucket, file.getOriginalFilename(), file.getInputStream());
+    <span class="kw">return</span> <span class="str">"Uploaded"</span>;
+}</code></pre>
+                                </div>
+
+                                <div class="diff-col good">
+                                    <div class="diff-header">
+                                        <span class="col-title">✓ Optimized: Pre-Signed S3 URL</span>
+                                        <span class="diff-metric-tag">Latency: 2ms • Zero Server IO</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// App returns temporary signed URL; Client uploads directly to S3!</span>
+<span class="ann">@GetMapping</span>(<span class="str">"/resumes/upload-url"</span>)
+<span class="kw">public</span> <span class="cls">UploadUrlResponse</span> <span class="fn">getPresignedUrl</span>(<span class="ann">@RequestParam</span> <span class="cls">String</span> filename) {
+    <span class="cls">String</span> presignedUrl = s3Presigner.generateUrl(filename, <span class="cls">Duration</span>.ofMinutes(15));
+    <span class="kw">return</span> <span class="kw">new</span> <span class="cls">UploadUrlResponse</span>(presignedUrl);
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="diff-takeaway">
+                                <strong>Engineering Takeaway:</strong> Never route multi-gigabyte payloads through application servers. The application should only authorize and generate pre-signed URLs, letting Amazon S3 or Cloud Storage handle the raw IO directly.
+                            </div>
+                        </div>
+
+                        <!-- CHALLENGE 6 -->
+                        <div class="challenge-pane" id="c6">
+                            <div class="challenge-intro">
+                                <div class="challenge-title-group">
+                                    <h3>Challenge 6: 10-Second Blocking Request (Async Worker)</h3>
+                                    <p>Triggering AI resume parsing and email notifications synchronously within the HTTP request blocks the servlet thread for 10 seconds, quickly causing thread starvation.</p>
+                                </div>
+                                <div class="benchmark-delta-pill">
+                                    <div class="metric-val">10,000ms → 12ms</div>
+                                    <div class="metric-label">HTTP API Response Time</div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-split">
+                                <div class="diff-col bad">
+                                    <div class="diff-header">
+                                        <span class="col-title">✕ Bad: Synchronous Heavy Loop</span>
+                                        <span class="diff-metric-tag">Tomcat Threads Starved • 10s wait</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// HTTP Client hangs for 10 seconds waiting for AI parse</span>
+<span class="ann">@PostMapping</span>(<span class="str">"/apply"</span>)
+<span class="kw">public</span> <span class="cls">Response</span> <span class="fn">apply</span>(<span class="ann">@RequestBody</span> <span class="cls">ApplicationRequest</span> req) {
+    aiResumeService.parseAndScore(req.getResumeId()); <span class="cm">// Takes 10s!</span>
+    emailService.sendConfirmation(req.getEmail());     <span class="cm">// Takes 1.5s!</span>
+    <span class="kw">return</span> <span class="cls">Response</span>.ok();
+}</code></pre>
+                                </div>
+
+                                <div class="diff-col good">
+                                    <div class="diff-header">
+                                        <span class="col-title">✓ Optimized: Event Queue + @Async</span>
+                                        <span class="diff-metric-tag">202 Accepted • 12ms</span>
+                                    </div>
+                                    <pre class="diff-code-box"><code><span class="cm">// Returns HTTP 202 immediately; worker processes in background</span>
+<span class="ann">@PostMapping</span>(<span class="str">"/apply"</span>)
+<span class="kw">public</span> <span class="cls">ResponseEntity</span>&lt;<span class="cls">Void</span>&gt; <span class="fn">apply</span>(<span class="ann">@RequestBody</span> <span class="cls">ApplicationRequest</span> req) {
+    applicationService.savePending(req);
+    eventPublisher.publishEvent(<span class="kw">new</span> <span class="cls">ApplicationSubmittedEvent</span>(req));
+    <span class="kw">return</span> <span class="cls">ResponseEntity</span>.accepted().build(); <span class="cm">// 12ms response</span>
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="diff-takeaway">
+                                <strong>Engineering Takeaway:</strong> Separate fast write operations from slow downstream processing. Publish an asynchronous event or push to Kafka/RabbitMQ so worker threads process the heavy lifting in the background.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION: CAPSTONE BLUEPRINT (JOB PLATFORM 100K) (DATA.MD SEC 24 & 30)
+             ================================================================= -->
+        <section class="section" id="capstone">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span>●</span> SECTION 24: THE CAPSTONE BLUEPRINT
+                    </div>
+                    <h2 class="section-title">Production Project: Job Platform Backend</h2>
+                    <p class="section-subtitle">
+                        Stop building "Student CRUD" toys. Build one serious, hardened production system capable of handling 100,000 users, high-concurrency applications, and distributed resilience.
+                    </p>
+                </div>
+
+                <div class="blueprint-card">
+                    <div class="blueprint-grid">
+                        <div class="blueprint-info">
+                            <h3>100k Concurrent Users Blueprint</h3>
+                            <p>
+                                Instead of memorizing isolated tutorials, you build one unified architecture spanning database transactions, indexing, cache stampede prevention, direct S3 uploads, and asynchronous worker queues.
+                            </p>
+
+                            <div class="system-entities-pillbox">
+                                <span class="entity-pill critical">User & Auth</span>
+                                <span class="entity-pill critical">Company</span>
+                                <span class="entity-pill critical">Job Listing</span>
+                                <span class="entity-pill critical">Candidate</span>
+                                <span class="entity-pill critical">Application</span>
+                                <span class="entity-pill">Resume S3</span>
+                                <span class="entity-pill">Interview Schedule</span>
+                                <span class="entity-pill">Notifications</span>
+                                <span class="entity-pill">AI Resume Analysis</span>
+                            </div>
+
+                            <p style="font-size: 0.95rem;">
+                                Every endpoint is architected with strict transaction boundaries, RFC 7807 error structures, rate-limiting, and metric observability.
+                            </p>
+                        </div>
+
+                        <!-- System Architecture Diagram -->
+                        <div class="arch-diagram-box">
+                            <pre><code>            React / Mobile Client
+                    │  (Direct S3 upload for resumes)
+                    ▼
+          ┌───────────────────┐
+          │ Spring Boot API   │ ◄─── Rate Limiter (Redis)
+          │ (Security + JWT)  │
+          └─────────┬─────────┘
+                    │
+      ┌─────────────┼─────────────┐
+      ▼             ▼             ▼
+   MySQL          Redis          S3
+ (Primary/Replica)(Hot Caches) (Blob Storage)
+      │                           │
+      └─────────────┐             │
+                    ▼             ▼
+                  Kafka / RabbitMQ
+                    │
+                    ▼
+          ┌───────────────────┐
+          │ Async Worker Pool │
+          │ (AI Resume Parse) │
+          └───────────────────┘</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 4 Production Specs Grid -->
+                    <div class="arch-specs-grid">
+                        <div class="spec-box">
+                            <div class="spec-box-header">
+                                <span class="spec-icon">⚡</span>
+                                <h4 class="spec-title">Data & Indexing Strategy</h4>
+                            </div>
+                            <ul class="spec-list">
+                                <li><strong>Composite Index:</strong> <code class="mono">(company_id, status, created_at)</code></li>
+                                <li><strong>Cursor Pagination:</strong> Avoid slow SQL offset performance on millions of rows</li>
+                                <li><strong>Optimistic Locking:</strong> <code class="mono">@Version</code> column on applications to prevent race conditions</li>
+                            </ul>
+                        </div>
+
+                        <div class="spec-box">
+                            <div class="spec-box-header">
+                                <span class="spec-icon">🛡️</span>
+                                <h4 class="spec-title">Security & Hardening</h4>
+                            </div>
+                            <ul class="spec-list">
+                                <li><strong>Access + Refresh Tokens:</strong> 15m short-lived access token + rotating refresh token in HTTP-only cookie</li>
+                                <li><strong>Role & Permission RBAC:</strong> Method-level <code class="mono">@PreAuthorize("hasAuthority('JOB_WRITE')")</code></li>
+                                <li><strong>Rate Limiting:</strong> Bucket4j / Redis Token Bucket on public endpoints</li>
+                            </ul>
+                        </div>
+
+                        <div class="spec-box">
+                            <div class="spec-box-header">
+                                <span class="spec-icon">💾</span>
+                                <h4 class="spec-title">Caching & Invalidation</h4>
+                            </div>
+                            <ul class="spec-list">
+                                <li><strong>Cache-Aside:</strong> Hot company profiles & top job searches in Redis</li>
+                                <li><strong>Explicit TTL:</strong> 10-minute expiry + randomized jitter to prevent cache stampedes</li>
+                                <li><strong>Targeted Invalidation:</strong> <code class="mono">@CacheEvict</code> fired on job status modifications</li>
+                            </ul>
+                        </div>
+
+                        <div class="spec-box">
+                            <div class="spec-box-header">
+                                <span class="spec-icon">📊</span>
+                                <h4 class="spec-title">Testing & Observability</h4>
+                            </div>
+                            <ul class="spec-list">
+                                <li><strong>Testcontainers:</strong> Integration tests spin ephemeral MySQL and Redis containers</li>
+                                <li><strong>MDC Correlation:</strong> Every log line tagged with unique <code class="mono">X-Request-ID</code></li>
+                                <li><strong>Prometheus & Grafana:</strong> Real-time p95/p99 latency tracking via Spring Boot Actuator</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION: INTERVIEW QUESTION VAULT (DATA.MD SEC 23)
+             ================================================================= -->
+        <section class="section" id="vault">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span>●</span> SECTION 23: INTERVIEW QUESTION VAULT
+                    </div>
+                    <h2 class="section-title">Senior Interview Question Bank</h2>
+                    <p class="section-subtitle">
+                        Can you explain and defend these concepts without Googling? Filter by category or search in real-time to test your technical depth.
+                    </p>
+                </div>
+
+                <div class="vault-controls">
+                    <div class="category-filter-bar">
+                        <button class="filter-chip active" data-cat="all">All (60)</button>
+                        <button class="filter-chip" data-cat="spring">Spring Core</button>
+                        <button class="filter-chip" data-cat="rest">REST APIs</button>
+                        <button class="filter-chip" data-cat="jpa">JPA & Hibernate</button>
+                        <button class="filter-chip" data-cat="db">Database & SQL</button>
+                        <button class="filter-chip" data-cat="sec">Security</button>
+                        <button class="filter-chip" data-cat="prod">Production & Scale</button>
+                    </div>
+
+                    <div class="search-box-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="vault-search" class="search-input" placeholder="Search interview questions...">
+                    </div>
+                </div>
+
+                <!-- Questions Accordion Grid -->
+                <div class="qa-grid" id="qa-container">
+
+                    <!-- SPRING CORE QUESTIONS -->
+                    <div class="qa-card" data-category="spring">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q01</span>
+                                <span class="qa-question">Why is constructor injection preferred over field injection?</span>
+                                <span class="qa-category-tag">Spring</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                Constructor injection makes all dependencies explicit at creation time, enforces class immutability (allowing final fields), prevents partially initialized objects, and makes unit testing effortless without needing reflection or Spring's test context runner.
+                            </p>
+                            <div class="interview-pro-tip">
+                                <strong>Interview Tip:</strong> Field injection (<code class="mono">@Autowired private UserService s;</code>) hides dependencies from unit tests and makes it easy to violate the Single Responsibility Principle without noticing.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="spring">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q02</span>
+                                <span class="qa-question">What does @SpringBootApplication actually do?</span>
+                                <span class="qa-category-tag">Spring</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                It is a meta-annotation bundling three core annotations: <code class="mono">@Configuration</code> (identifies the class as a source of bean definitions), <code class="mono">@EnableAutoConfiguration</code> (guesses and configures beans based on jar dependencies on the classpath), and <code class="mono">@ComponentScan</code> (scans the current package and sub-packages for <code class="mono">@Component</code>, <code class="mono">@Service</code>, etc.).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="spring">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q03</span>
+                                <span class="qa-question">How does Spring Boot's auto-configuration evaluate which beans to load?</span>
+                                <span class="qa-category-tag">Spring</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                Auto-configuration uses conditional annotations such as <code class="mono">@ConditionalOnClass</code>, <code class="mono">@ConditionalOnMissingBean</code>, and <code class="mono">@ConditionalOnProperty</code>. For instance, if <code class="mono">DataSource.class</code> is on the classpath and you haven't declared your own DataSource bean, Spring Boot automatically creates a HikariDataSource bean.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="spring">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q04</span>
+                                <span class="qa-question">What is the Spring Bean Lifecycle?</span>
+                                <span class="qa-category-tag">Spring</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                1. Instantiation (calling constructor) → 2. Populating properties/dependencies → 3. Aware interfaces (<code class="mono">BeanNameAware</code>, <code class="mono">ApplicationContextAware</code>) → 4. BeanPostProcessor pre-initialization → 5. <code class="mono">@PostConstruct</code> / <code class="mono">InitializingBean</code> → 6. BeanPostProcessor post-initialization (AOP proxies created here!) → 7. Bean ready for use → 8. <code class="mono">@PreDestroy</code> on shutdown.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- REST API QUESTIONS -->
+                    <div class="qa-card" data-category="rest">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q05</span>
+                                <span class="qa-question">PUT vs PATCH: What is the exact semantic difference?</span>
+                                <span class="qa-category-tag">REST</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                <code class="mono">PUT</code> is idempotent and replaces the target resource entirely with the request representation (any omitted fields are reset or overwritten). <code class="mono">PATCH</code> applies a partial modification to the resource, modifying only the fields provided in the payload.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="rest">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q06</span>
+                                <span class="qa-question">HTTP 401 Unauthorized vs 403 Forbidden: When do you return which?</span>
+                                <span class="qa-category-tag">REST</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                <code class="mono">401 Unauthorized</code> means the request lacks valid authentication credentials (user identity is unknown or token expired). <code class="mono">403 Forbidden</code> means the user is authenticated, but lacks the required roles/permissions to access the specific resource.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="rest">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q07</span>
+                                <span class="qa-question">When should an API return HTTP 204 No Content?</span>
+                                <span class="qa-category-tag">REST</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                When the server has successfully fulfilled the request and there is no additional content to send in the response payload. Commonly used for successful <code class="mono">DELETE</code> operations or update actions where returning the modified object is unnecessary.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- JPA & HIBERNATE QUESTIONS -->
+                    <div class="qa-card" data-category="jpa">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q08</span>
+                                <span class="qa-question">Explain the N+1 problem and how to solve it in production.</span>
+                                <span class="qa-category-tag">JPA</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                The N+1 problem occurs when fetching N parent records results in 1 initial query for the parents, followed by N separate queries to fetch the lazy-loaded child associations (1 + N = 101 queries for 100 rows). It is resolved by:
+                                1. Using <code class="mono">JOIN FETCH</code> in JPQL to eagerly load children in a single SQL query.
+                                2. Using <code class="mono">@EntityGraph</code>.
+                                3. Configuring <code class="mono">hibernate.default_batch_fetch_size</code> to batch load IDs via SQL <code class="mono">IN (...)</code>.
+                                4. Projecting directly to a flat DTO.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="jpa">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q09</span>
+                                <span class="qa-question">What is Hibernate Dirty Checking and how does it work?</span>
+                                <span class="qa-category-tag">JPA</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                When an entity is loaded into the Persistence Context, Hibernate creates an internal snapshot of its state. During transaction commit or flush, Hibernate compares the entity's current property values with the snapshot. If changes are detected ("dirty"), it automatically generates and executes an SQL <code class="mono">UPDATE</code> statement without requiring an explicit <code class="mono">repository.save()</code>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="jpa">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q10</span>
+                                <span class="qa-question">save() vs saveAndFlush(): What is the difference?</span>
+                                <span class="qa-category-tag">JPA</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                <code class="mono">save()</code> attaches the entity to the Persistence Context and queues the SQL insert/update until flush time (typically at the end of the transaction). <code class="mono">saveAndFlush()</code> immediately synchronizes in-memory state with the database, issuing SQL statements right away within the active transaction.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- DATABASE & SQL QUESTIONS -->
+                    <div class="qa-card" data-category="db">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q11</span>
+                                <span class="qa-question">What is EXPLAIN in SQL and how do you read it?</span>
+                                <span class="qa-category-tag">Database</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                <code class="mono">EXPLAIN</code> reveals the execution plan chosen by the database optimizer. Key columns to inspect:
+                                1. <code class="mono">type</code>: <code class="mono">ALL</code> (Full table scan — danger!), <code class="mono">index</code> (Full index scan), <code class="mono">range</code>, <code class="mono">ref</code>, or <code class="mono">const</code> (Fastest).
+                                2. <code class="mono">key</code>: The actual index used.
+                                3. <code class="mono">rows</code>: Number of rows estimated to be examined.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="db">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q12</span>
+                                <span class="qa-question">When can an index actually hurt database performance?</span>
+                                <span class="qa-category-tag">Database</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                Every index consumes disk space and must be updated synchronously on every <code class="mono">INSERT</code>, <code class="mono">UPDATE</code>, and <code class="mono">DELETE</code>. On write-heavy tables with multiple redundant indexes, write throughput drops significantly and index fragmentation increases.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SECURITY QUESTIONS -->
+                    <div class="qa-card" data-category="sec">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q13</span>
+                                <span class="qa-question">Why BCrypt instead of SHA-256 or MD5 for passwords?</span>
+                                <span class="qa-category-tag">Security</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                SHA-256 and MD5 are designed to be fast, making them vulnerable to GPU-accelerated brute-force attacks (billions of hashes/sec). BCrypt is an intentionally slow, adaptive key-derivation function with an adjustable cost factor and automatic cryptographic salting to defeat rainbow table attacks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="sec">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q14</span>
+                                <span class="qa-question">Where should JWT validation happen in Spring Security?</span>
+                                <span class="qa-category-tag">Security</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                Inside a custom <code class="mono">OncePerRequestFilter</code> positioned before <code class="mono">UsernamePasswordAuthenticationFilter</code> in the <code class="mono">SecurityFilterChain</code>. The filter extracts the Bearer token from the <code class="mono">Authorization</code> header, verifies the signature, and populates <code class="mono">SecurityContextHolder.getContext().setAuthentication(auth)</code>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCTION & SCALE -->
+                    <div class="qa-card" data-category="prod">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q15</span>
+                                <span class="qa-question">How would you handle 10,000 requests per second in Spring Boot?</span>
+                                <span class="qa-category-tag">Production</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                1. Horizontal scaling: Deploy multiple stateless instances behind an Nginx/ALB load balancer.
+                                2. Caching: Offload read traffic with Redis Cache-Aside.
+                                3. Database: Read replicas with read-write splitting and properly tuned HikariCP connection pool.
+                                4. Asynchronous processing: Push heavy work to Kafka/RabbitMQ message queues.
+                                5. Rate limiting: Bucket4j / Redis token buckets to protect against DDoS.
+                                6. Java 21 Virtual Threads (<code class="mono">spring.threads.virtual.enabled=true</code>) for high I/O throughput.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card" data-category="prod">
+                        <div class="qa-question-header">
+                            <div class="qa-title-wrap">
+                                <span class="qa-num">Q16</span>
+                                <span class="qa-question">What causes a Spring Boot database connection pool timeout?</span>
+                                <span class="qa-category-tag">Production</span>
+                            </div>
+                            <span class="qa-chevron">▼</span>
+                        </div>
+                        <div class="qa-answer-body">
+                            <p class="qa-answer-text">
+                                HikariCP throws <code class="mono">ConnectionTimeoutException</code> when all available connections in the pool are held by active requests and none are returned within the timeout window (default 30s). Common causes:
+                                1. Slow unindexed database queries holding connections open.
+                                2. Running external HTTP/REST calls inside <code class="mono">@Transactional</code> methods.
+                                3. Connection leaks where resources aren't properly closed.
+                            </p>
+                            <div class="interview-pro-tip">
+                                <strong>Senior Pro Tip:</strong> Never execute third-party HTTP API calls or slow file I/O inside a <code class="mono">@Transactional</code> boundary. It monopolizes a database connection from Hikari for the entire network roundtrip!
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION: THE ENGINEERING DISCIPLINE (DATA.MD SEC 26 - 30)
+             ================================================================= -->
+        <section class="section" id="discipline">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span>●</span> SECTION 26–28: MINDSET & ROUTINE
+                    </div>
+                    <h2 class="section-title">The Engineering Discipline</h2>
+                    <p class="section-subtitle">
+                        Stop watching 3-hour passive tutorials. Professional backend mastery is forged through deliberate daily practice and rigorous empirical measurement.
+                    </p>
+                </div>
+
+                <div class="discipline-grid">
+                    <!-- Routine Card -->
+                    <div class="routine-card">
+                        <div class="card-title-eyebrow">2–3 Hours Daily Practice</div>
+                        <h3 class="card-main-title">The Daily Mastery Routine</h3>
+
+                        <div class="routine-breakdown">
+                            <div class="routine-slot">
+                                <span class="slot-time">45 MIN</span>
+                                <div class="slot-content">
+                                    <h4>Serious Concept Deep-Dive</h4>
+                                    <p>Study one non-trivial concept in depth (e.g., Transaction Propagation, SecurityFilterChain internals, or EXPLAIN plans).</p>
+                                </div>
+                            </div>
+
+                            <div class="routine-slot">
+                                <span class="slot-time">75 MIN</span>
+                                <div class="slot-content">
+                                    <h4>Deliberate Coding & Tests</h4>
+                                    <p>Implement the concept in code. Write unit and slice tests (<code class="mono">@DataJpaTest</code>, <code class="mono">@WebMvcTest</code>) to verify behavior.</p>
+                                </div>
+                            </div>
+
+                            <div class="routine-slot">
+                                <span class="slot-time">30 MIN</span>
+                                <div class="slot-content">
+                                    <h4>Verbal Interview Defense</h4>
+                                    <p>Answer 5–10 senior interview questions out loud without looking at notes. Explain trade-offs clearly.</p>
+                                </div>
+                            </div>
+
+                            <div class="routine-slot">
+                                <span class="slot-time">15 MIN</span>
+                                <div class="slot-content">
+                                    <h4>Optimization Audit</h4>
+                                    <p>Ask: "How can I make today's code break? What is the database query count? How does it behave under 1,000 concurrent requests?"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Measurement Mindset Card -->
+                    <div class="mindset-card">
+                        <div class="card-title-eyebrow">Data.md Section 26</div>
+                        <h3 class="card-main-title">Measure Instead of Guessing</h3>
+
+                        <div class="mindset-rule-list">
+                            <div class="rule-box">
+                                <span class="bad-say">"Redis will make this faster."</span>
+                                <span class="good-do">✓ Benchmark: Measure p99 latency before & after cache hit</span>
+                            </div>
+
+                            <div class="rule-box">
+                                <span class="bad-say">"This query is slow because there are lots of records."</span>
+                                <span class="good-do">✓ Run EXPLAIN: Check index usage, key used, and rows examined</span>
+                            </div>
+
+                            <div class="rule-box">
+                                <span class="bad-say">"This API is slow in production."</span>
+                                <span class="good-do">✓ Measure Metrics: CPU, GC pauses, Hikari pool queue, DB query count</span>
+                            </div>
+                        </div>
+
+                        <div class="mindset-conclusion">
+                            The professional developer cycle:
+                            <strong>OBSERVE → MEASURE → IDENTIFY BOTTLENECK → OPTIMIZE → MEASURE AGAIN</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 18-Step Recommended Sequence Timeline (Data.md Sec 29) -->
+                <div class="roadmap-timeline-box">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h4 style="font-size: 1.3rem; color: var(--text-pure); margin-bottom: 0.5rem;">The Recommended Master Learning Sequence</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Follow this exact 18-phase progression from fundamentals to production systems architecture:</p>
+                    </div>
+
+                    <div class="timeline-flow">
+                        <span class="flow-node">01 Spring Core</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">02 REST Design</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">03 DTO + Validation</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">04 Exception Handling</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">05 JPA Deep Dive</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">06 N+1 Query Fixes</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">07 Transactions</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">08 Security Architecture</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">09 Testing Pyramid</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">10 Caching & Redis</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">11 Async & Kafka</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">12 S3 File Uploads</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">13 Observability</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">14 Docker</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">15 CI/CD</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">16 System Design</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-node">17 Production Scale</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             FINAL CALL TO ACTION & FOOTER
+             ================================================================= -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>The Final Goal: Think Like a Senior Engineer</h2>
+                    <p>
+                        When an interviewer asks: <em>"Build an API for a job platform supporting 100k users"</em>, you don't jump to writing CRUD controllers. You think entities, indexes, transactions, caching, failure handling, testing, and deployment.
+                    </p>
+                    <a href="#curriculum" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.05rem;">
+                        Start Building Today →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <div class="brand-name" style="margin-bottom: 0.35rem;">SPRING<span>GUIDE</span></div>
+                <div>Master Spring Boot & Production Backend Engineering</div>
+            </div>
+            <div class="footer-nav">
+                <a href="#audit">Skill Audit</a>
+                <a href="#curriculum">Curriculum</a>
+                <a href="#lab">Optimization Lab</a>
+                <a href="#capstone">Job Platform</a>
+                <a href="#vault">Interview Vault</a>
+            </div>
+            <div class="mono" style="font-size: 0.75rem;">
+                Crafted with Anti-Slop Discipline • Built for Engineers
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification for Code Copy -->
+    <div id="toast-notification" class="toast-notice">Snippet copied to clipboard!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
