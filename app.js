@@ -1,11 +1,11 @@
 /* ==========================================================================
    SPRINGGUIDE INTERACTIVE ENGINE (app.js)
-   Tactile micro-interactions, tab routing, live search, code copy, and simulator
+   Apple-grade smooth transitions, search filtering, and methodology explorer
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     initReadingProgress();
-    initDevLoopSimulator();
+    initManifestoMethodology();
     initCurriculumTabs();
     initOptimizationLab();
     initInterviewVault();
@@ -29,92 +29,92 @@ function initReadingProgress() {
 }
 
 /* --------------------------------------------------------------------------
-   2. Developer Loop Simulator (Hero Interactive Feature)
+   2. Apple-Style Engineering Methodology Explorer
    -------------------------------------------------------------------------- */
-const devLoopData = [
+const methodologyData = [
     {
         step: "01",
-        label: "BUILD",
-        desc: "Implement Feature",
-        cmd: "mvn compile -Dfeature=job-application-api",
-        log: "[INFO] Building JobApplicationController & Service layer...\n[INFO] Compiling 14 source files to target/classes\n[SUCCESS] Feature build complete (0.84s)"
+        name: "BUILD",
+        tagline: "Implement Clean Feature",
+        detailTitle: "Phase 1: Domain & API Implementation",
+        detailDesc: "Construct the feature with strict DTO boundaries, immutable Java records, and explicit constructor injection. Never expose raw database entities to external consumers."
     },
     {
         step: "02",
-        label: "TEST",
-        desc: "Verify Logic",
-        cmd: "mvn test -Dtest=JobApplicationServiceTest",
-        log: "[RUNNING] @WebMvcTest & Mockito service unit tests...\n[PASSED] testCreateApplication_ValidRequest()\n[PASSED] testDuplicateApplication_ThrowsConflict()\n[INFO] Tests run: 8, Failures: 0, Errors: 0 (1.12s)"
+        name: "TEST",
+        tagline: "Automate Slice Verification",
+        detailTitle: "Phase 2: Automated Testing Suite",
+        detailDesc: "Verify logic across the test pyramid: fast Mockito unit tests, isolated slice tests with @WebMvcTest and @DataJpaTest, and real container validation via Testcontainers."
     },
     {
         step: "03",
-        label: "BREAK",
-        desc: "Stress Test & Edge Cases",
-        cmd: "k6 run stress-test-10k-concurrency.js",
-        log: "[WARNING] Concurrency spikes to 10,000 req/s\n[ALERT] Database connection pool exhausted (HikariPool-1: max=10)\n[ALERT] HTTP 500: LockAcquisitionException: Deadlock detected\n[ALERT] Latency p99 degraded to 4,200ms"
+        name: "BREAK",
+        tagline: "Stress & Edge Case Audit",
+        detailTitle: "Phase 3: Deliberate Failure Analysis",
+        detailDesc: "Expose weaknesses before production does: simulate high-concurrency traffic, test deadlocks, verify transaction rollback boundaries, and audit memory limits."
     },
     {
         step: "04",
-        label: "DEBUG",
-        desc: "Identify Bottlenecks",
-        cmd: "cat application-profile.log | grep -E 'SLOW_QUERY|N+1'",
-        log: "[TRACE] Hibernate: SELECT * FROM applications WHERE user_id = ?\n[TRACE] Hibernate (x100 queries): SELECT * FROM jobs WHERE id = ?\n[TRACE] Bottleneck identified: N+1 query issue + missing composite index on (user_id, job_id)"
+        name: "DEBUG",
+        tagline: "Isolate True Bottlenecks",
+        detailTitle: "Phase 4: Root Cause Identification",
+        detailDesc: "Inspect Hibernate SQL generation, trace request execution through MDC correlation IDs, and evaluate database query execution plans with EXPLAIN."
     },
     {
         step: "05",
-        label: "MEASURE",
-        desc: "Analyze Latency & CPU",
-        cmd: "curl -s http://localhost:8080/actuator/metrics/http.server.requests",
-        log: "[METRICS] Total Requests: 142,500 | Error Rate: 8.4%\n[METRICS] Latency Avg: 680ms | p95: 2,400ms | p99: 4,200ms\n[METRICS] DB Queries per Request: 101 queries (Severe bottleneck)"
+        name: "MEASURE",
+        tagline: "Empirical Performance Metrics",
+        detailTitle: "Phase 5: Measure Instead of Guessing",
+        detailDesc: "Observe real data: track p95 and p99 latency histograms, monitor HikariCP connection pool usage, analyze GC pause frequencies, and count queries per endpoint."
     },
     {
         step: "06",
-        label: "OPTIMIZE",
-        desc: "Refine & Scale",
-        cmd: "git diff UserService.java --stat && mvn test",
-        log: "[OPTIMIZE] Swapped lazy fetch with @EntityGraph / JOIN FETCH\n[OPTIMIZE] Added Redis cache for hot company profiles (TTL 10m)\n[RESULT] p99 Latency: 4,200ms -> 18ms (99.5% reduction!)\n[RESULT] DB Queries per Request: 101 -> 1 query"
+        name: "OPTIMIZE",
+        tagline: "Scale & Refine",
+        detailTitle: "Phase 6: Targeted Optimization",
+        detailDesc: "Eliminate N+1 queries using JOIN FETCH and EntityGraphs, add Redis Cache-Aside with explicit TTLs, create composite B-tree indexes, and offload tasks asynchronously."
     },
     {
         step: "07",
-        label: "DOCUMENT",
-        desc: "Lock Architecture",
-        cmd: "curl -s http://localhost:8080/v3/api-docs | jq .info",
-        log: "[DOCS] OpenAPI 3.0 specs updated with RFC 7807 error schema\n[DOCS] Production runbook: Added HikariCP sizing guidelines\n[VERIFIED] Ready for production deployment."
+        name: "DEFEND",
+        tagline: "Articulate Trade-Offs",
+        detailTitle: "Phase 7: Production Readiness & Interview Defense",
+        detailDesc: "Document architecture cleanly with OpenAPI 3.0 contracts and articulate your technical decisions and trade-offs with senior-level confidence."
     }
 ];
 
-function initDevLoopSimulator() {
-    const loopRows = document.querySelectorAll('.loop-step-row');
-    const cmdLine = document.querySelector('.terminal-cmd-line .cmd-text');
-    const logOutput = document.querySelector('.terminal-log-output');
+function initManifestoMethodology() {
+    const stepItems = document.querySelectorAll('.manifesto-step-item');
+    const detailTitle = document.querySelector('.detail-pane-title');
+    const detailDesc = document.querySelector('.detail-pane-desc');
 
-    if (!loopRows.length || !cmdLine || !logOutput) return;
+    if (!stepItems.length || !detailTitle || !detailDesc) return;
 
     let currentIndex = 0;
     let autoInterval = null;
 
-    function setLoopStep(index) {
-        loopRows.forEach((r, i) => {
-            r.classList.toggle('active', i === index);
+    function setStep(index) {
+        stepItems.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
         });
-        const data = devLoopData[index];
-        cmdLine.textContent = data.cmd;
-        logOutput.textContent = data.log;
+        const data = methodologyData[index];
+        detailTitle.textContent = data.detailTitle;
+        detailDesc.textContent = data.detailDesc;
         currentIndex = index;
     }
 
-    loopRows.forEach((row, idx) => {
-        row.addEventListener('click', () => {
+    stepItems.forEach((item, idx) => {
+        item.addEventListener('click', () => {
             clearInterval(autoInterval);
-            setLoopStep(idx);
+            setStep(idx);
         });
     });
 
-    // Start auto loop ticker every 4.5 seconds
+    // Auto-advance calmly every 5 seconds
     autoInterval = setInterval(() => {
-        const nextIndex = (currentIndex + 1) % devLoopData.length;
-        setLoopStep(nextIndex);
-    }, 4500);
+        const nextIndex = (currentIndex + 1) % methodologyData.length;
+        setStep(nextIndex);
+    }, 5000);
 }
 
 /* --------------------------------------------------------------------------
@@ -183,7 +183,6 @@ function initInterviewVault() {
         if (header) {
             header.addEventListener('click', () => {
                 const isOpen = card.classList.contains('open');
-                // Optional: close siblings or allow multiple open
                 card.classList.toggle('open', !isOpen);
             });
         }
@@ -242,7 +241,7 @@ function initCodeCopyButtons() {
         toast.classList.add('show');
         setTimeout(() => {
             toast.classList.remove('show');
-        }, 2200);
+        }, 2000);
     }
 
     copyBtns.forEach(btn => {
@@ -255,7 +254,7 @@ function initCodeCopyButtons() {
                 navigator.clipboard.writeText(text).then(() => {
                     const originalHTML = btn.innerHTML;
                     btn.innerHTML = '✓ Copied';
-                    showToast('Snippet copied to clipboard!');
+                    showToast('Snippet copied to clipboard');
                     setTimeout(() => {
                         btn.innerHTML = originalHTML;
                     }, 2000);
@@ -276,18 +275,23 @@ function initMobileNav() {
 
     if (!toggleBtn || !navLinks) return;
 
-    toggleBtn.addEventListener('click', () => {
-        const isVisible = navLinks.style.display === 'flex';
-        navLinks.style.display = isVisible ? 'none' : 'flex';
-        if (!isVisible) {
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = '#090b10';
-            navLinks.style.padding = '1.5rem';
-            navLinks.style.borderBottom = '1px solid var(--border-medium)';
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('mobile-open');
+    });
+
+    // Close when clicking any nav link
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+        });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !toggleBtn.contains(e.target)) {
+            navLinks.classList.remove('mobile-open');
         }
     });
 }
+
